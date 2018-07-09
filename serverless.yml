@@ -1,0 +1,22 @@
+service: ottawa-transport-skill
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+
+provider:
+  name: aws
+  runtime: python3.6
+
+package:
+  include:
+    - ottawa_transit_skill/**
+
+functions:
+  octranspo:
+    handler: ottawa_transit_skill/alexa.handler
+    events:
+      - alexaSkill: amzn1.ask.skill.0a77e89f-dfdc-4c40-bdb9-b305c6944998
